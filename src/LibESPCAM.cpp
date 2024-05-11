@@ -49,7 +49,9 @@ ESPCAM::ESPCAM(int calidadjpeg, framesize_t tamano, size_t buffers, camera_grab_
    _config.frame_size = tamano;  // Tamaño salida de la imagen QVGA|CIF|VGA|SVGA|XGA|SXGA|UXGA FRAMESIZE_240X240 Para reconocimiento
    _config.jpeg_quality = calidadjpeg; //Calidad 0-63 a menor numero mas calidad
    _config.fb_count = buffers;  // Numero de imagenes en el frames, mas de 1 funciona en continuo.
-   _config.grab_mode = modo; //CAMERA_GRAB_WHEN_EMPTY CAMERA_GRAB_LATEST  Indicamos cuando debe rellenarse el Buffer
+   _config.grab_mode = modo; // Indica como se rellenan lo buffers
+                             //CAMERA_GRAB_WHEN_EMPTY llena cuando esta vacio, menos recursos pero se recogen fotogramas antiguos.
+                             // CAMERA_GRAB_LATEST  siempre tendremos los ultimos, es decir al llamar a fb_get (interesante para fb_count distinto de uno.
 }
 
 //==============  Incializacion de la camara que debe ejecutarse en SetUp
